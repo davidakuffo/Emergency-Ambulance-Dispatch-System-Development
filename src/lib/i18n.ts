@@ -82,12 +82,27 @@ export interface Translation {
   whatHappensNext: string;
   nearestAmbulance: string;
   receiveUpdates: string;
-  stayCalm: string;
   returnHome: string;
 
   // Footer
   copyright: string;
   availableAlways: string;
+
+  // Ambulance Tracking
+  ambulanceOnTheWay: string;
+  estimatedArrival: string;
+  minute: string;
+  minutes: string;
+  ambulanceArrived: string;
+  distance: string;
+  liveTracking: string;
+  followAmbulance: string;
+  waitingInstructions: string;
+  staySafeVisible: string;
+  keepPhoneCharged: string;
+  haveSomeoneWithYou: string;
+  followDispatcher: string;
+  stayCalm: string;
 
   // Common Actions
   continueToLocation: string;
@@ -175,12 +190,27 @@ export const translations: Record<Language, Translation> = {
     whatHappensNext: "What happens next:",
     nearestAmbulance: "• Nearest ambulance will be dispatched",
     receiveUpdates: "• You'll receive updates on arrival time",
-    stayCalm: "• Stay calm and prepare for medical assistance",
     returnHome: "Return to Home",
 
     // Footer
     copyright: "© 2024 Ghana Emergency Medical Services. Available 24/7 for medical emergencies.",
     availableAlways: "Available 24/7 for medical emergencies",
+
+    // Ambulance Tracking
+    ambulanceOnTheWay: "Ambulance on the Way",
+    estimatedArrival: "Estimated arrival in",
+    minute: "minute",
+    minutes: "minutes",
+    ambulanceArrived: "Ambulance has arrived at your location!",
+    distance: "Distance",
+    liveTracking: "Live Ambulance Tracking",
+    followAmbulance: "Follow your ambulance in real-time",
+    waitingInstructions: "What to do while waiting:",
+    staySafeVisible: "Stay in a safe, visible location",
+    keepPhoneCharged: "Keep your phone charged and with you",
+    haveSomeoneWithYou: "Have someone stay with you if possible",
+    followDispatcher: "Follow any instructions from the dispatcher",
+    stayCalm: "Stay calm - help is on the way!",
 
     // Common Actions
     continueToLocation: "Continue to Location",
@@ -215,7 +245,7 @@ export const translations: Record<Language, Translation> = {
     injury: "Apirakuru",
 
     // What to Expect
-    whatToExpected: "Deɛ Ɛbɛba",
+    whatToExpect: "Deɛ Ɛbɛba",
     expectStep1: "• Yɛbɛbisa wo baabi ne wo haw no ho nsɛm",
     expectStep2: "• Ambulance a ɛbɛn wo no bɛkɔ",
     expectStep3: "• Wobɛnya nsɛm fa ambulance no duba ho",
@@ -267,12 +297,27 @@ export const translations: Record<Language, Translation> = {
     whatHappensNext: "Deɛ ɛbɛdi so:",
     nearestAmbulance: "• Ambulance a ɛbɛn wo bɛkɔ",
     receiveUpdates: "• Wobɛnya nsɛm fa duba berɛ ho",
-    stayCalm: "• Twe wo bo ase na siesie wo ho ma aduruyɛ mmoa",
     returnHome: "San Kɔ Fie",
 
     // Footer
     copyright: "© 2024 Ghana Aduruyɛ Ntɛmntɛm Dwumadi. Ɛwɔ hɔ nnɔnhwerew 24/7 ma aduruyɛ ntɛmntɛm.",
     availableAlways: "Ɛwɔ hɔ nnɔnhwerew 24/7 ma aduruyɛ ntɛmntɛm",
+
+    // Ambulance Tracking
+    ambulanceOnTheWay: "Ambulance Reba",
+    estimatedArrival: "Yɛbɔ wo sɛ ɛbɛdu",
+    minute: "sika",
+    minutes: "sika",
+    ambulanceArrived: "Ambulance adu wo baabi!",
+    distance: "Kwakora",
+    liveTracking: "Ambulance Nhwehwɛmu Te Sɛseɛ",
+    followAmbulance: "Di wo ambulance akyi te sɛseɛ",
+    waitingInstructions: "Deɛ wobɛyɛ sɛ woretwɛn:",
+    staySafeVisible: "Tena baabi a ɛyɛ dwoodwoo na wobɛhu wo",
+    keepPhoneCharged: "Ma wo telefon mu den na fa no wɔ wo nkyɛn",
+    haveSomeoneWithYou: "Ma obi ntena wo nkyɛn sɛ ɛbɛyɛ",
+    followDispatcher: "Di akwankyerɛ biara a wɔde ba no so",
+    stayCalm: "Twe wo bo ase - mmoa reba!",
 
     // Common Actions
     continueToLocation: "Kɔ So Kɔ Baabi",
@@ -359,12 +404,27 @@ export const translations: Record<Language, Translation> = {
     whatHappensNext: "Lɛ bɛ di so:",
     nearestAmbulance: "• Ambulance lɛ bɛn o bɛ kɔ",
     receiveUpdates: "• O bɛ nya nsɛm duba berɛ",
-    stayCalm: "• Tɔɔ o bo ase ni siesie o ho ma ayɔɔlɛ lɛ",
     returnHome: "San Kɔ Fie",
 
     // Footer
     copyright: "© 2024 Ghana Ayɔɔlɛ Kɛkɛ Shidaami. Ɛ wɔ afii nnɔɔlɛ 24/7 ma ayɔɔlɛ kɛkɛ.",
     availableAlways: "Ɛ wɔ afii nnɔɔlɛ 24/7 ma ayɔɔlɛ kɛkɛ",
+
+    // Ambulance Tracking
+    ambulanceOnTheWay: "Ambulance Baa",
+    estimatedArrival: "Yɛ bɔ o sɛ ɛ bɛ ba",
+    minute: "nimba",
+    minutes: "nimba",
+    ambulanceArrived: "Ambulance ba o baafoɔ!",
+    distance: "Kwakora",
+    liveTracking: "Ambulance Kɛlɛlɛ Te Sɛseɛ",
+    followAmbulance: "Di o ambulance akyi te sɛseɛ",
+    waitingInstructions: "Lɛ o bɛ yɛ sɛ o toɔ:",
+    staySafeVisible: "Tɔɔ baafoɔ lɛ ɛ yɛ dwoodwoo ni o bɛ kɛ",
+    keepPhoneCharged: "Ma o telefon mu den ni fa no wɔ o gbɛɛ",
+    haveSomeoneWithYou: "Ma nɔmba tɔɔ o gbɛɛ sɛ ɛ bɛ yɛ",
+    followDispatcher: "Di akwankyerɛ lɛ bɛ ba so",
+    stayCalm: "Tɔɔ o bo ase - lɛ baa!",
 
     // Common Actions
     continueToLocation: "Kɔ So Kɔ Baafoɔ",
@@ -399,19 +459,19 @@ export const getLanguageFlag = (language: Language): string => {
 // Browser language detection
 export const detectBrowserLanguage = (): Language => {
   if (typeof window === 'undefined') return 'en';
-  
+
   const browserLang = navigator.language.toLowerCase();
-  
+
   // Check for Twi/Akan language codes
   if (browserLang.includes('ak') || browserLang.includes('tw')) {
     return 'tw';
   }
-  
+
   // Check for Ga language codes
   if (browserLang.includes('ga')) {
     return 'ga';
   }
-  
+
   // Default to English
   return 'en';
 };
@@ -425,7 +485,7 @@ export const saveLanguagePreference = (language: Language): void => {
 
 export const getLanguagePreference = (): Language => {
   if (typeof window === 'undefined') return 'en';
-  
+
   const saved = localStorage.getItem('ghana-ems-language') as Language;
   return saved || detectBrowserLanguage();
 };

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Language, getLanguageName, getLanguageFlag } from '@/lib/i18n';
 
@@ -45,9 +45,8 @@ export default function LanguageSelector({ variant = 'header', className = '' }:
                   key={lang}
                   type="button"
                   onClick={() => handleLanguageChange(lang)}
-                  className={`w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors duration-150 flex items-center gap-3 ${
-                    language === lang ? 'bg-blue-50 text-blue-700' : 'text-gray-700'
-                  }`}
+                  className={`w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors duration-150 flex items-center gap-3 ${language === lang ? 'bg-blue-50 text-blue-700' : 'text-gray-700'
+                    }`}
                 >
                   <span className="text-lg">{getLanguageFlag(lang)}</span>
                   <span className="font-medium">{getLanguageName(lang)}</span>
@@ -88,9 +87,8 @@ export default function LanguageSelector({ variant = 'header', className = '' }:
                 key={lang}
                 type="button"
                 onClick={() => handleLanguageChange(lang)}
-                className={`w-full px-3 py-2 text-left hover:bg-gray-50 transition-colors duration-150 flex items-center gap-2 text-sm ${
-                  language === lang ? 'bg-blue-50 text-blue-700' : 'text-gray-700'
-                }`}
+                className={`w-full px-3 py-2 text-left hover:bg-gray-50 transition-colors duration-150 flex items-center gap-2 text-sm ${language === lang ? 'bg-blue-50 text-blue-700' : 'text-gray-700'
+                  }`}
               >
                 <span>{getLanguageFlag(lang)}</span>
                 <span>{getLanguageName(lang)}</span>
@@ -125,9 +123,8 @@ export default function LanguageSelector({ variant = 'header', className = '' }:
               key={lang}
               type="button"
               onClick={() => handleLanguageChange(lang)}
-              className={`w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors duration-150 flex items-center gap-3 ${
-                language === lang ? 'bg-blue-50 text-blue-700' : 'text-gray-700'
-              }`}
+              className={`w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors duration-150 flex items-center gap-3 ${language === lang ? 'bg-blue-50 text-blue-700' : 'text-gray-700'
+                }`}
             >
               <span className="text-base">{getLanguageFlag(lang)}</span>
               <span className="font-medium">{getLanguageName(lang)}</span>

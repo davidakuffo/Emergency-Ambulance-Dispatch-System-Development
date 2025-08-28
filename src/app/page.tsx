@@ -5,12 +5,13 @@ import LanguageSelector from "@/components/LanguageSelector";
 import NotificationSettings from "@/components/NotificationSettings";
 import OfflineIndicator, { PWAInstallPrompt } from "@/components/OfflineIndicator";
 import DebugPanel from "@/components/DebugPanel";
+import AmbulanceTracking from "@/components/AmbulanceTracking";
 import { sendAmbulanceDispatchedNotification } from "@/lib/notifications";
 import { offlineStorage } from "@/lib/offline-storage";
 
 export default function Home() {
   const t = useTranslation();
-  const [currentLocation, setCurrentLocation] = useState<{lat: number; lng: number} | null>(null);
+  const [currentLocation, setCurrentLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [showEmergencyForm, setShowEmergencyForm] = useState(false);
   const [emergencyType, setEmergencyType] = useState("");
   const [isRequestingLocation, setIsRequestingLocation] = useState(false);
@@ -209,7 +210,7 @@ function EmergencyRequestForm({
   onBack
 }: {
   emergencyType: string;
-  currentLocation: {lat: number; lng: number} | null;
+  currentLocation: { lat: number; lng: number } | null;
   onBack: () => void;
 }) {
   const t = useTranslation();
@@ -291,33 +292,24 @@ function EmergencyRequestForm({
 
   if (requestSubmitted) {
     return (
-      <div className="max-w-md mx-auto text-center">
-        <div className="bg-green-50 border border-green-200 rounded-2xl p-8">
-          <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
+      <div className="space-y-6">
+        {/* Success Message */}
+        <div className="max-w-md mx-auto text-center">
+          <div className="bg-green-50 border border-green-200 rounded-2xl p-6">
+            <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h2 className="text-xl font-bold text-green-800 mb-2">{t.requestSubmitted}</h2>
+            <p className="text-green-700 text-sm">
+              {navigator.onLine ? t.requestReceived : "Your emergency request has been saved offline and will be sent when you're back online."}
+            </p>
           </div>
-          <h2 className="text-2xl font-bold text-green-800 mb-4">{t.requestSubmitted}</h2>
-          <p className="text-green-700 mb-6">
-            {navigator.onLine ? t.requestReceived : "Your emergency request has been saved offline and will be sent when you're back online."}
-          </p>
-          <div className="bg-white rounded-lg p-4 mb-6">
-            <p className="text-sm text-gray-600 mb-2">{t.whatHappensNext}</p>
-            <ul className="text-sm text-gray-700 space-y-1">
-              <li>{t.nearestAmbulance}</li>
-              <li>{t.receiveUpdates}</li>
-              <li>{t.stayCalm}</li>
-            </ul>
-          </div>
-          <button
-            type="button"
-            onClick={onBack}
-            className="w-full bg-green-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-green-700 transition-all duration-200"
-          >
-            {t.returnHome}
-          </button>
         </div>
+
+        {/* Ambulance Tracking */}
+        <AmbulanceTracking />
       </div>
     );
   }
@@ -350,9 +342,8 @@ function EmergencyRequestForm({
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div
-              className={`bg-red-500 h-2 rounded-full transition-all duration-300 ${
-                step === 1 ? 'w-1/3' : step === 2 ? 'w-2/3' : 'w-full'
-              }`}
+              className={`bg-red-500 h-2 rounded-full transition-all duration-300 ${step === 1 ? 'w-1/3' : step === 2 ? 'w-2/3' : 'w-full'
+                }`}
             ></div>
           </div>
         </div>
@@ -367,7 +358,7 @@ function EmergencyRequestForm({
                 aria-label="Select emergency type"
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                 value={formData.emergencyType}
-                onChange={(e) => setFormData({...formData, emergencyType: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, emergencyType: e.target.value })}
               >
                 <option value="">{t.selectEmergencyType}</option>
                 <option value="cardiac">{t.cardiacEmergency}</option>
@@ -391,12 +382,11 @@ function EmergencyRequestForm({
                   <button
                     key={severity.level}
                     type="button"
-                    onClick={() => setFormData({...formData, severity: severity.level as 1 | 2 | 3 | 4})}
-                    className={`p-3 rounded-lg border-2 transition-all duration-200 ${
-                      formData.severity === severity.level
+                    onClick={() => setFormData({ ...formData, severity: severity.level as 1 | 2 | 3 | 4 })}
+                    className={`p-3 rounded-lg border-2 transition-all duration-200 ${formData.severity === severity.level
                         ? `${severity.color} text-white border-transparent`
                         : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'
-                    }`}
+                      }`}
                   >
                     <div className="font-medium">{severity.label}</div>
                     <div className="text-xs">{t.priority} {severity.level}</div>
@@ -449,7 +439,7 @@ function EmergencyRequestForm({
                 rows={3}
                 placeholder={t.enterAddress}
                 value={formData.manualAddress}
-                onChange={(e) => setFormData({...formData, manualAddress: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, manualAddress: e.target.value })}
               />
             </div>
 
@@ -483,7 +473,7 @@ function EmergencyRequestForm({
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                 placeholder={t.enterName}
                 value={formData.contactName}
-                onChange={(e) => setFormData({...formData, contactName: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
               />
             </div>
 
@@ -494,7 +484,7 @@ function EmergencyRequestForm({
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                 placeholder={t.enterPhone}
                 value={formData.contactPhone}
-                onChange={(e) => setFormData({...formData, contactPhone: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, contactPhone: e.target.value })}
               />
             </div>
 
@@ -505,7 +495,7 @@ function EmergencyRequestForm({
                 rows={3}
                 placeholder={t.describeEmergency}
                 value={formData.description}
-                onChange={(e) => setFormData({...formData, description: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               />
             </div>
 

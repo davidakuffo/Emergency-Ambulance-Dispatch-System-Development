@@ -51,7 +51,7 @@ class NotificationService {
       await navigator.serviceWorker.ready;
 
       // Ensure we have the latest registration
-      this.registration = await navigator.serviceWorker.getRegistration('/');
+      this.registration = await navigator.serviceWorker.getRegistration('/') || null;
 
       if (!this.registration) {
         throw new Error('Failed to get service worker registration');
@@ -201,11 +201,11 @@ class NotificationService {
       }
 
       const success = await this.subscription.unsubscribe();
-      
+
       if (success) {
         this.subscription = null;
         console.log('Unsubscribed from push notifications');
-        
+
         // Notify server about unsubscription
         await this.removeSubscriptionFromServer();
       }
@@ -234,16 +234,7 @@ class NotificationService {
       badge: '/badge-72x72.png',
       tag: `ghana-ems-${data.type}`,
       requireInteraction: data.requireInteraction || false,
-      actions: [
-        {
-          action: 'view',
-          title: 'View Details'
-        },
-        {
-          action: 'dismiss',
-          title: 'Dismiss'
-        }
-      ],
+      // Note: actions are not supported in all browsers, removing for compatibility
       data: {
         url: data.url || '/',
         type: data.type
@@ -339,7 +330,7 @@ class NotificationService {
     }
   }
 
-  private urlBase64ToUint8Array(base64String: string): Uint8Array {
+  private urlBase64ToUint8Array(base64String: string): BufferSource {
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
     const base64 = (base64String + padding)
       .replace(/-/g, '+')
@@ -356,7 +347,7 @@ class NotificationService {
 
   private arrayBufferToBase64(buffer: ArrayBuffer | null): string {
     if (!buffer) return '';
-    
+
     const bytes = new Uint8Array(buffer);
     let binary = '';
     for (let i = 0; i < bytes.byteLength; i++) {

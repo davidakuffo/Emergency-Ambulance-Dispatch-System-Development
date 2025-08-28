@@ -14,6 +14,7 @@ if (isDbEnabled) {
 
 export async function query<T = any>(text: string, params?: any[]): Promise<{ rows: T[] }> {
   if (!pool) throw new Error("Database not configured. Set USE_DB=true and DATABASE_URL in .env");
-  return pool.query(text, params);
+  const result = await pool.query(text, params);
+  return { rows: result.rows as T[] };
 }
 

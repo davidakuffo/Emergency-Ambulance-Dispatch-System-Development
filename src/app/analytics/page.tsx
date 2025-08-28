@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { format, subDays, startOfDay } from "date-fns";
-import { DispatchRecord, EmergencyCall } from "@/lib/types";
+import { DispatchRecord, EmergencyCall } from "../../lib/types";
 
 export default function AnalyticsDashboard() {
   const [dispatches, setDispatches] = useState<DispatchRecord[]>([]);
@@ -11,7 +11,7 @@ export default function AnalyticsDashboard() {
   useEffect(() => {
     fetch("/api/dispatch").then(r => r.json()).then(setDispatches);
     fetch("/api/calls").then(r => r.json()).then(setCalls);
-    
+
     const es = new EventSource("/api/events");
     es.onmessage = (ev) => {
       try {
@@ -29,7 +29,7 @@ export default function AnalyticsDashboard() {
             return [...prev, msg.call];
           });
         }
-      } catch {}
+      } catch { }
     };
     return () => es.close();
   }, []);
@@ -50,10 +50,10 @@ export default function AnalyticsDashboard() {
   };
 
   const historicalData = generateHistoricalData();
-  
+
   // Real-time calculations
   const completedDispatches = dispatches.filter(d => typeof d.responseTimeSeconds === 'number');
-  const avgResponseTime = completedDispatches.length 
+  const avgResponseTime = completedDispatches.length
     ? completedDispatches.reduce((sum, d) => sum + (d.responseTimeSeconds || 0), 0) / completedDispatches.length / 60
     : 0;
 
@@ -108,7 +108,7 @@ export default function AnalyticsDashboard() {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between">
               <div>
@@ -121,7 +121,7 @@ export default function AnalyticsDashboard() {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between">
               <div>
@@ -134,7 +134,7 @@ export default function AnalyticsDashboard() {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between">
               <div>
@@ -190,7 +190,7 @@ export default function AnalyticsDashboard() {
                   cy="50%"
                   outerRadius={80}
                   dataKey="value"
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  label={({ name, percent }) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}
                 >
                   {severityData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
